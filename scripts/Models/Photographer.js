@@ -4,6 +4,7 @@ export default class Photographer {
     this.id = data.id;
     this.city = data.city;
     this.country = data.country;
+    this.tags = data.tags;
     this.tagline = data.tagline;
     this.price = data.price;
     this.portrait = data.portrait;

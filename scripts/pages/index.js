@@ -1,8 +1,6 @@
-import Photographer from "../models/Photographer.js";
-
 async function getPhotographers() {
   try {
-    const requete = await fetch("./data/photographers.json", {
+    const requete = await fetch("../../data/photographers.json", {
       method: "GET",
     });
     if (requete.ok) {
