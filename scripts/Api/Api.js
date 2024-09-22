@@ -37,7 +37,7 @@ class MediasApi extends Api {
     super(url);
   }
   // Get Medias data
-  async getMedia() {
+  async getMedias() {
     return await this.get("res.media");
   }
 }
