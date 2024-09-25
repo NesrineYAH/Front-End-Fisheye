@@ -8,8 +8,26 @@ const loadLightbox = async () => {
 let filters = [];
 // Filter async function
 
+const filter = async (
+  waitForFunction,
+  grid,
+  itemSelector,
+  layoutMode,
+  sortBy,
+  getSortdata,
+  sortAscending
+) => {
+  await waitForFunction; //une promesse ou une fonction asynchrone que l'on attend avant de continuer l'exécution de la suite de la fonction.
+  let $grid = $(grid).isotope({
+    itemSelector: itemSelector,
+    layoutMode: layoutMode,
+    sortBy: sortBy,
+    getSortdata: getSortdata,
+    sortAscending: sortAscending,
+  });
+};
 
-
+/*
 const filtre = `
 <section class="filtre-box">
   <label for="filter">Trier par :</label>
@@ -30,3 +48,4 @@ const filtre = `
 document
   .querySelector(".photograph-header")
   .insertAdjacentHTML("afterend", filtre);
+*/
