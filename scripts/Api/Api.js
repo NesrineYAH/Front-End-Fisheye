@@ -44,21 +44,3 @@ class MediasApi extends Api {
 
 export { PhotographersApi, MediasApi };
 
-/*
-async function getPhotographers() {
-  try {
-    const requete = await fetch("./data/photographers.json", {
-      method: "GET",
-    });
-    if (requete.ok) {
-      const data = await requete.json();
-
-      return {
-        photographer: [...data.photographers],
-      };
-    }
-  } catch (e) {
-    console.log(e);
-  }
-}
-*/
