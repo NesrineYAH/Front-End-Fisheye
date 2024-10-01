@@ -18,34 +18,63 @@ const filter = async (
   sortAscending
 ) => {
   await waitForFunction; //une promesse ou une fonction asynchrone que l'on attend avant de continuer l'exécution de la suite de la fonction.
+
   let $grid = $(grid).isotope({
     itemSelector: itemSelector,
     layoutMode: layoutMode,
-    sortBy: sortBy,
+    sortBy: sortBy, /// Tri selon le nom des éléments (si tu as défini getSortData)
     getSortdata: getSortdata,
     sortAscending: sortAscending,
   });
 };
 
+//Version uniquement avec JS sans jQuery
+// Sélectionne l'élément avec JavaScript pur (au lieu de $(grid) avec jQuery)
 /*
-const filtre = `
-<section class="filtre-box">
-  <label for="filter">Trier par :</label>
-  <button class="data_btn" aria-label="filtre" >
-  <label for="data-select" class="data-select select-icon"> 
-    <p class="value">Popularité</p>
-   <i class="fa-solid fa-angle-down"></i>
-  </label>
-  </button>
-  <div class="custom-select">
-    <button class="custom-select-option select-icon" data-value="Popularité" aria-label="filtre par Popularité">Popularité <i class="fa-solid fa-chevron-up"></i></button>
-    <button class="custom-select-option" data-value="Date" aria-label=" filtre par Date">Date</button>
-    <button class="custom-select-option" data-value="Titre" aria-label="filtre par Titre">Titre</button>
-  </div>
-</section>
-`;
+let gridElement = document.querySelector(grid);
 
-document
-  .querySelector(".photograph-header")
-  .insertAdjacentHTML("afterend", filtre);
-*/
+let iso = new Isotope(gridElement, {
+  itemSelector: itemSelector,
+  layoutMode: layoutMode,
+  sortBy: sortBy,
+  getSortData: getSortData,
+  sortAscending: sortAscending,
+});*/
+
+// If .filters buttons isChecked = add filters
+$(".filters").on("click", "button", function (event) {
+  let $target = $(event.currentTarget);
+  let isChecked = $target.hasClass("is-checked");
+  let filter = $target.attr("data-filter");
+  if (isChecked) {
+    addFilter(filter);
+  } else {
+    removeFilter(filter);
+  }
+  // group filters together, inclusive
+  $grid.isotope({ filter: filters.join(",") });
+
+  // loadLightbox on photographer-page
+  if (window.location.toString().includes("/photographer-page.html")) {
+    loadLightbox();
+  }
+});
+//////////////// Version javaScript
+document.querySelector(".filters").addEventListener("click", function (event) {
+  //Vérifie si l'élément cliqué est un boutton
+  if (event.target.tagName === "BOUTTON") {
+    let target = event.target; // Le boutton cliqué
+    let isChecked = target.classList.contains("is-checked"); // Vérifie si le boutton a la class is-checked
+    let filter = target.getAttribute("data-filter"); //Récupère la valeur de l'attribut data-filter
+
+    //Ajoute ou enlève le filtre selon la classe is-checked
+
+    if (isChecked) {
+      addFilter(filter); //Fonction pour ajouter un filtre
+    } else {
+      removeFilter(filter); // Fonction pour enlever un filtre
+    }
+    // Combine les filtres et applique à la grille via Isotope
+    $grid.isotope({ filter: filters.join(",") }); /// ????
+  }
+});
