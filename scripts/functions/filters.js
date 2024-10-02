@@ -76,5 +76,28 @@ document.querySelector(".filters").addEventListener("click", function (event) {
     }
     // Combine les filtres et applique à la grille via Isotope
     $grid.isotope({ filter: filters.join(",") }); /// ????
+
+    // Vérifie si l'utlisateur est sur la page 'photographer-page.html'
+    if (window.location.toString().includes("/photographer.html")) {
+      loadLightbox();
+    }
   }
 });
+// Version JQuery
+
+// Function addFilter to add filter
+
+function addFilter(filter) {
+  if (filters.indexOf(filter) == -1) {
+    filters.push(filter);
+  }
+}
+
+// Function to remove filter
+function removeFilter(filter) {
+  let index = filters.indexOf(filter);
+  if (index != -1) {
+    filters.splice(index, 1);
+  }
+}
+// Get sortValue on .sort-by-button-group buttons
