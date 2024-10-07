@@ -12,7 +12,15 @@ header {
   align-items: center;
   height: 90px;
 }
+a {
+  color: #901c1c;
+  text-decoration: none;
+}
 
+a:hover {
+  color: #901c1c;
+  text-decoration: underline;
+}
 h1 {
   color: #901c1c;
   margin-right: 100px;

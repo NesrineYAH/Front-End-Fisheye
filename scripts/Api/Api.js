@@ -4,11 +4,11 @@ class Api {
    * @param {string} url
    */
   constructor(url) {
-    this.url = url;
+    this._url = url;
   }
 
   async get(data) {
-    return fetch(this.url)
+    return fetch(this._url)
       .then((res) => res.json())
       .then((res) => eval(data))
       .catch((err) => console.log("an error occurs", err));
@@ -43,4 +43,3 @@ class MediasApi extends Api {
 }
 
 export { PhotographersApi, MediasApi };
-
