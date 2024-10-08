@@ -3,7 +3,7 @@ class PhotographerCard {
   constructor(photographer) {
     this._photographer = photographer;
   }
-
+//createPhotographerCard
   createPhotographerCard() {
     const $wrapper = document.createElement("div");
     $wrapper.classList.add("col", "text-center", "mb-5", "itemSelector");
@@ -23,13 +23,15 @@ class PhotographerCard {
       cardTags = cardTags + Tags;
     }
     // Render photographer card
+    //<img class="rounded-circle photographer-card-img" src="assets/img/Photographers_ID_Photos/${this._photographer._portrait}" alt="" width="200px" height="200px">
     const photographerCard = `
             <article class="card h-100 border-0 bg-transparent photographer-card">
                 <a class="photographer-card-portrait-link" href="photographer-page.html?id=${this._photographer._id}" aria-label="${this._photographer._name}">
                     <div class="photographer-card-portrait-container">
                         <figure>
-                            <img class="rounded-circle photographer-card-img" src="assets/img/Photographers_ID_Photos/${this._photographer._portrait}" alt="" width="200px" height="200px">
-                        </figure>
+                            <img class="rounded-circle photographer-card-img" src="../../assets/images/Photographers_ID_Photos${this._photographer._portrait}" alt="" width="200px" height="200px">
+
+                            </figure>
                         <figurecaption>
                             <h2 class="photographer-card-name">${this._photographer._name}</h2>
                         </figurecaption>

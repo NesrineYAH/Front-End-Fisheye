@@ -14,6 +14,7 @@ class Api {
       .catch((err) => console.log("an error occurs", err));
   }
 }
+console.log(res);
 // Define PhotographersApi class with Api
 
 class PhotographersApi extends Api {
