@@ -1,6 +1,6 @@
+import { filter, checkTag } from "./functions/filters.js";
 import { PhotographersApi } from "./api/api.js";
 import { Photographer } from "./class/photographer.js";
-import { filter, checkTag } from "./functions/filters.js";
 import { PhotographerCard } from "./templates/PhotographerCard.js";
 
 class Homepage {
@@ -14,7 +14,13 @@ class Homepage {
 
   async photographer() {
     const photographerData = await this.photographersApi.getPhotographers();
+    console.log(photographerData); // Pour vérifier la structure des données
+    // vérification après l'appel API est un tableau
 
+    if (!Array.isArray(photographerData)) {
+      console.log("photographerData n'est pas un tableau :", photographerData);
+      return; //Arretez l'éxécution si ce n'ai pas un tableau
+    }
     photographerData
       .map((photographer) => new Photographer(photographer))
       .forEach((photographer) => {

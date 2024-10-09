@@ -3,7 +3,7 @@ class PhotographerCard {
   constructor(photographer) {
     this._photographer = photographer;
   }
-//createPhotographerCard
+  //createPhotographerCard
   createPhotographerCard() {
     const $wrapper = document.createElement("div");
     $wrapper.classList.add("col", "text-center", "mb-5", "itemSelector");

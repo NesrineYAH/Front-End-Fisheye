@@ -54,3 +54,10 @@ h1 {
   height: 200px;
   width: 200px;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #d3573c;
+}
+#photographer-list {
+}
