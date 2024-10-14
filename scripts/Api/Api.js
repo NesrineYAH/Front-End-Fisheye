@@ -8,13 +8,13 @@ class Api {
     console.log(`API initialized with URL: ${this._url}`);
   }
 
-  async get() {
-    console.log(`Fetching data from: ${this._url}`);
+  async get(data) {
     try {
-      const response = await fetch(this._url);
-      console.log(`Response status: ${response.status}`);
-      const data = await response.json();
+      const response = await fetch(this._url); //console.log(`Response status: ${response.status}`);
+      const data = await response.json(); //
       console.log("Data fetched successfully:", data);
+      console.log(`code HTTP : ${response.status}`);
+
       return data;
     } catch (err) {
       throw new Error(err);

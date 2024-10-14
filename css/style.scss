@@ -1,0 +1,743 @@
+/* ---------------------------------------- */
+/* ==            SUMMARY              */
+/*---------------------------------------- */
+
+/* == VARIABLES  */
+/* == GENERAL MIXINS  */
+/* == FONT  */
+/* == GENERAL  */
+/* == HEADER  */
+/* == HOME  */
+/* == PHOTOGRAPHER  */
+/* == FORM  */
+/* == LIGHTBOX  */
+
+/* ---------------------------------------- */
+/* ==          VARIABLES             */
+/*---------------------------------------- */
+
+$primary-color: #901c1c;
+$secondary-color: #d3573c;
+$tertiary-color: #db8876;
+$quaternary-color: #bb2d3b;
+$quinary-color: #f2f2f2;
+$senary-color: #545454;
+
+$dark-text-color: #000;
+$light-text-color: #fff;
+
+$primary-box-shadow-color: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+$secondary-box-shadow-color: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+
+$font-size: (
+    mobile: 4vw,
+    tablet: 2vw,
+    desktop: 1rem,
+);
+
+$breakpoints: (
+    tablet: 768px,
+    desktop: 992px,
+    big-desktop: 1200px,
+);
+
+/* ---------------------------------------- */
+/* ==        GENERAL MIXINS            */
+/*---------------------------------------- */
+@mixin tablet-breakpoint {
+    @media screen and (min-width: map-get($breakpoints, tablet)) {
+        @content;
+    }
+}
+
+@mixin desktop-breakpoint {
+    @media screen and (min-width: map-get($breakpoints, desktop)) {
+        @content;
+    }
+}
+
+@mixin big-desktop-breakpoint {
+    @media screen and (min-width: map-get($breakpoints, big-desktop)) {
+        @content;
+    }
+}
+
+@mixin no-margin {
+    margin: 0;
+}
+
+/* ---------------------------------------- */
+/* ==              FONT                 */
+/*---------------------------------------- */
+@mixin main-typography {
+    font-family: "DM Sans", serif;
+    font-size: map-get($font-size, mobile);
+
+    @include tablet-breakpoint {
+        font-size: map-get($font-size, tablet);
+    }
+
+    @include desktop-breakpoint {
+        font-size: map-get($font-size, desktop);
+    }
+}
+
+@mixin title-typography {
+    font-family: "DM Sans", serif;
+}
+
+html {
+    @include main-typography;
+}
+
+h1 {
+    @include title-typography;
+}
+
+/* ---------------------------------------- */
+/* ==            GENERAL                */
+/*---------------------------------------- */
+
+body {
+    position: relative;
+    max-width: 1320px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-color;
+        text-decoration: underline;
+    }
+}
+
+h1 {
+    color: $primary-color;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    @include no-margin;
+}
+
+h2 {
+    @include no-margin;
+}
+
+h3 {
+    @include no-margin;
+}
+
+h4 {
+    @include no-margin;
+}
+
+h5 {
+    @include no-margin;
+}
+
+h6 {
+    @include no-margin;
+}
+
+:focus {
+    outline: none;
+    box-shadow: $primary-box-shadow-color;
+}
+
+/* ---------------------------------------- */
+/* ==            HEADER                */
+/*---------------------------------------- */
+.header {
+    @include desktop-breakpoint() {
+        margin-bottom: 6.25rem !important;
+    }
+}
+
+.home-link {
+    width: fit-content;
+}
+
+.logo {
+    max-width: 9.375rem;
+
+    @include tablet-breakpoint {
+        max-width: 12.5rem;
+    }
+}
+
+.nav {
+    font-weight: 500;
+
+    &-filters {
+        max-width: 18rem;
+    }
+
+    &-col {
+        @include desktop-breakpoint() {
+            position: relative;
+            left: -4.5%;
+        }
+    }
+}
+
+.tag {
+    border: 0.01rem solid $senary-color;
+    background: #fff;
+    color: $primary-color;
+    font-size: 0.75rem;
+}
+
+.btn.is-checked {
+    border: 0.03125rem solid $primary-color !important;
+    background-color: $primary-color !important;
+    color: $light-text-color !important;
+}
+
+.to-content {
+    &-btn {
+        top: 2rem;
+        width: fit-content;
+        background: $tertiary-color;
+        font-size: 1.125rem;
+        font-weight: bold;
+
+        &-show {
+            @include tablet-breakpoint {
+                display: block !important;
+            }
+        }
+    }
+}
+
+/* ---------------------------------------- */
+/* ==               HOME                   */
+/*---------------------------------------- */
+
+.our-photographer {
+    z-index: -1;
+    position: absolute;
+    top: -8.5rem;
+
+    @include tablet-breakpoint {
+        position: static;
+    }
+
+    @include desktop-breakpoint {
+        position: absolute;
+        top: -10rem;
+    }
+
+    @include big-desktop-breakpoint {
+        position: absolute;
+        top: -9rem;
+    }
+
+    h1 {
+        font-size: 0.875rem;
+
+        @include tablet-breakpoint() {
+            font-size: 2rem;
+        }
+    }
+
+    &-container {
+        position: relative;
+    }
+}
+
+.photographer {
+    &-card {
+        a {
+            box-shadow: none;
+        }
+
+        &:focus-within {
+            box-shadow: $primary-box-shadow-color;
+        }
+
+        &-img {
+            width: 12.5rem;
+            height: 12.5rem;
+            object-fit: cover;
+            box-shadow: $secondary-box-shadow-color;
+        }
+
+        &-name {
+            color: $secondary-color;
+            font-size: 2rem;
+        }
+    }
+}
+
+.card {
+    &-city {
+        color: $primary-color;
+    }
+
+    &-tagline {
+        font-size: 0.9rem;
+    }
+
+    &-price {
+        color: $senary-color;
+        font-size: 0.8rem;
+    }
+}
+
+.card-city,
+.card-tagline,
+.card-price {
+    @include no-margin;
+}
+
+/* ---------------------------------------- */
+/* ==              PHOTOGRAPHER             */
+/*---------------------------------------- */
+
+#about-photographer {
+    @include tablet-breakpoint {
+        background: $quinary-color;
+    }
+
+    p {
+        @include no-margin;
+    }
+
+    &-img {
+        width: 7rem;
+        height: 7rem;
+        object-fit: cover;
+        box-shadow: $secondary-box-shadow-color;
+
+        @include tablet-breakpoint {
+            width: 9.5rem;
+            height: 9.5rem;
+        }
+
+        @include desktop-breakpoint {
+            width: 12rem;
+            height: 12rem;
+        }
+
+        &-container {
+            @include desktop-breakpoint {
+                justify-content: end;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    &-name {
+        color: $secondary-color;
+        font-size: 2.25rem;
+
+        @include tablet-breakpoint {
+            font-size: 4rem;
+        }
+    }
+
+    &-city {
+        color: $primary-color;
+
+        @include tablet-breakpoint {
+            font-size: 1.5rem;
+        }
+    }
+
+    &-tagline {
+        color: $senary-color;
+
+        @include tablet-breakpoint {
+            font-size: 1.125rem;
+        }
+    }
+
+    &-tags-container {
+        ul {
+            li {
+                @include tablet-breakpoint {
+                    font-size: 1.125rem;
+                }
+            }
+        }
+    }
+
+    &-likes {
+        &-price-container {
+            z-index: 1;
+            right: 2.25rem;
+            left: unset;
+            width: fit-content;
+            background: $tertiary-color;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        &-logo {
+            width: 0.9rem;
+            filter: grayscale(100%) brightness(0);
+        }
+    }
+}
+
+.photographer-tags-container {
+    width: 90vw;
+}
+
+.dropbtn {
+    width: 10.625rem;
+    height: 4rem;
+    background-color: $primary-color;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 3rem;
+
+    &.show {
+        border-radius: 0.25rem 0.25rem 0 0;
+    }
+}
+
+.btn.btn-danger.dropdown-toggle.dropbtn.show {
+    .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+}
+
+.dropdown {
+    &-menu {
+        margin-top: -4px !important;
+        background-color: $primary-color;
+
+        & .show {
+            border-top-right-radius: 0.25rem !important;
+            border-top-left-radius: 0.25rem !important;
+        }
+    }
+
+    &-arrow {
+        position: absolute;
+        right: 1.5rem;
+        width: 1rem;
+        height: 3rem;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    &-toggle {
+        &::after {
+            content: none;
+        }
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.sort {
+    &-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+    }
+
+    &-button {
+        width: 10.625rem;
+        width: 100%;
+        height: 4rem;
+        border-radius: 0;
+        background-color: $primary-color;
+        color: white;
+        font-size: 1.125rem;
+        font-weight: 700;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    &-by-button-group li:last-child button {
+        border-bottom-right-radius: 0.25rem !important;
+        border-bottom-left-radius: 0.25rem !important;
+    }
+
+    &-name {
+        display: block;
+        border-top: 0.1rem solid white;
+        line-height: 4rem;
+    }
+}
+
+.photographer {
+    &-img-container {
+        a {
+            &:focus {
+                box-shadow: none;
+            }
+
+            &:focus .photographer-medias-img {
+                outline: 0;
+                box-shadow: $primary-box-shadow-color;
+            }
+        }
+    }
+
+    &-medias {
+        &-img {
+            object-fit: cover;
+            aspect-ratio: 2/1;
+
+            @include tablet-breakpoint {
+                aspect-ratio: 22/19;
+            }
+        }
+
+        &-text-container {
+            color: $primary-color;
+            font-size: 1rem;
+
+            @include tablet-breakpoint {
+                font-size: 1.5rem;
+            }
+        }
+
+        &-likes {
+            &-container {
+                color: $primary-color;
+                font-weight: 500;
+
+                @include tablet-breakpoint {
+                    font-size: 1.5rem;
+                }
+
+                &:focus {
+                    box-shadow: $primary-box-shadow-color;
+                }
+
+                &:hover {
+                    color: $quaternary-color;
+                }
+            }
+
+            &-logo {
+                width: 0.8rem;
+                opacity: 0.5;
+
+                @include tablet-breakpoint {
+                    width: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+.figcaption-video {
+    margin-top: -0.1rem !important;
+}
+
+.is-liked {
+    opacity: 1;
+}
+
+/* ---------------------------------------- */
+/* ==              FORM                   */
+/*---------------------------------------- */
+
+#call-to-action-button {
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    bottom: 1rem;
+    left: 0;
+    height: fit-content;
+    background: $primary-color;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    @include tablet-breakpoint {
+        position: static;
+    }
+
+    &:hover {
+        background: $quaternary-color;
+    }
+}
+
+.call-to-action {
+    &-modal {
+        &-title {
+            display: block;
+            color: $dark-text-color;
+            font-size: 2rem;
+        }
+    }
+}
+
+.form {
+    &-label {
+        font-size: 1.5rem;
+    }
+
+    &-control {
+        font-size: 1.2rem;
+    }
+}
+
+.btn-submit {
+    background: $primary-color;
+    color: $light-text-color;
+    font-weight: 700;
+}
+
+#confirmation {
+    display: none;
+
+    h1 {
+        padding: 16rem 0;
+        color: black;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.btn-close {
+    width: 1.2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+
+    @include tablet-breakpoint {
+        width: 2rem;
+        font-size: 2rem;
+    }
+}
+
+.invalid-feedback {
+    color: #400000;
+}
+
+/* ---------------------------------------- */
+/* ==            LIGHTBOX                  */
+/*---------------------------------------- */
+// The Modal (background)
+.modal {
+    &-xl {
+        max-width: 1240px !important;
+
+        @include tablet-breakpoint {
+            width: 90% !important;
+        }
+    }
+
+    &-content {
+        background: $tertiary-color;
+        color: $dark-text-color;
+    }
+
+    &-header {
+        align-items: normal;
+    }
+
+    &-img {
+        max-width: 75vw;
+        max-height: 85vh;
+
+        @include tablet-breakpoint {
+            max-width: 100%;
+        }
+    }
+
+    &-lightbox {
+        position: relative;
+        width: 100%;
+        pointer-events: all;
+
+        &-btn-close {
+            z-index: 1056;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff0000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+
+            &:focus {
+                box-shadow: $primary-box-shadow-color;
+            }
+        }
+    }
+}
+
+.carousel-control-next {
+    justify-content: end;
+
+    &:focus .carousel-control-next-icon {
+        outline: 0;
+        box-shadow: $primary-box-shadow-color;
+        opacity: 1;
+    }
+}
+
+.carousel-control-prev {
+    justify-content: start;
+
+    &:focus .carousel-control-prev-icon {
+        outline: 0;
+        box-shadow: $primary-box-shadow-color;
+        opacity: 1;
+    }
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    width: fit-content;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &-icon {
+        width: 2rem;
+        height: 2rem;
+
+        @include tablet-breakpoint {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff0000'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff0000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+// Hide the slides by default
+.mySlides {
+    width: fit-content;
+    max-width: 85%;
+    box-shadow: $secondary-box-shadow-color;
+}
+
+// Number text (1/3 etc)
+.numbertext {
+    position: absolute;
+    top: 0;
+    color: $quinary-color;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+// Caption text
+.caption-container {
+    margin-top: -0.4rem;
+    background-color: white;
+    color: $primary-color;
+
+    @include tablet-breakpoint {
+        font-size: 1.5rem;
+    }
+}
