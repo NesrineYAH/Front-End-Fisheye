@@ -1,5 +1,5 @@
 import { filter, checkTag } from "./functions/filters.js";
-import { PhotographersApi } from "./api/api.js";
+import { PhotographersApi } from "./api/Api.js";
 import { Photographer } from "./class/photographer.js";
 import { PhotographerCard } from "./templates/PhotographerCard.js";
 

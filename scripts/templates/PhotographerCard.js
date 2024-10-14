@@ -25,10 +25,10 @@ class PhotographerCard {
     // Render photographer card
     const photographerCard = `
             <article class="card h-100 border-2 bg-red photographer-card">
-                <a class="photographer-card-portrait-link" href="photographer-page.html?id=${this._photographer._id}" aria-label="${this._photographer._name}">
+                <a class="photographer-card-portrait-link" href="../../photographer.html?id=${this._photographer._id}" aria-label="${this._photographer._name}">
                     <div class="photographer-card-portrait-container">
                         <figure>
-                            <img class="rounded-circle photographer-card-img" src="../../assets/images/Photographers_ID_Photos${this._photographer._portrait}" alt="" width="200px" height="200px">
+                            <img class="rounded-circle photographer-card-img" src="../../assets/images/Photographers_ID_Photos/${this._photographer._portrait}" alt="" width="200px" height="200px" />
                             </figure>
                         <figurecaption>
                             <h2 class="photographer-card-name">${this._photographer._name}</h2>
