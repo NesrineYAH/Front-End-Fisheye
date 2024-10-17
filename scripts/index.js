@@ -1,14 +1,15 @@
 import { filter, checkTag } from "./functions/filters.js";
 import { PhotographersApi } from "./api/Api.js";
-import { Photographer } from "./class/photographer.js";
+import { Photographer } from "./class/Photographer.js";
 import { PhotographerCard } from "./templates/PhotographerCard.js";
 
 class Homepage {
   constructor() {
     // Get data
     this.photographersApi = new PhotographersApi("../data/photographers.json");
-    this.$photographersListWrapper =
-      document.querySelector("#photographer-list");
+    this.$photographersListWrapper = document.getElementById(
+      "#photographers-list"
+    );
   }
   // Render photographer list
 

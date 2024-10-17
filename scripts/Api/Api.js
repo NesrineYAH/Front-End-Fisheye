@@ -33,7 +33,7 @@ class PhotographersApi extends Api {
   }
   // Get Photographers data
   async getPhotographers() {
-    return await this.get("res.photographers");
+    return await this.get("res.photographer");
   }
 }
 
