@@ -10,7 +10,10 @@ class Api {
 
   async get(data) {
     try {
-      const response = await fetch(this._url); //console.log(`Response status: ${response.status}`);
+      const response = await fetch(this._url, {
+        method: "GET",
+      }); //console.log(`Response status: ${response.status}`);
+
       const data = await response.json(); //
       console.log("Data fetched successfully:", data);
       console.log(`code HTTP : ${response.status}`);

@@ -7,9 +7,8 @@ class Homepage {
   constructor() {
     // Get data
     this.photographersApi = new PhotographersApi("../data/photographers.json");
-    this.$photographersListWrapper = document.getElementById(
-      "#photographers-list"
-    );
+    this.$photographersListWrapper =
+      document.getElementById("photographer-list");
   }
   // Render photographer list
 
