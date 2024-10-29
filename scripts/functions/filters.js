@@ -1,5 +1,5 @@
 const loadLightbox = async () => {
-  const PhotographerPagesModule = await import("../photographer.js");
+  const PhotographerPagesModule = await import("../photographer-page.js");
   const photographerPages = new PhotographerPagesModule.PhotographerPages();
   photographerPages.lightbox();
 };
