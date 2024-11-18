@@ -13,3 +13,18 @@ let mediasLightbox = [];
 
 // Get photographer id
 let id = new URLSearchParams(window.location.search).get("id");
+// define PhotographerPgaes class
+class PhotographerPgaes {
+  constructor() {
+    this.$aboutPhotographerWrapper = document.querySelector(
+      "#about-photographer"
+    );
+    this.$mediasWrapper = document.querySelector(
+      "#photographer-all-medias-container"
+    );
+    this.$lightboxWrapper = document.querySelector("#modal-content");
+    // Get data
+    this.photographersApi = new PhotographersApi("../data/photographers.json");
+    this.MediasApi = new MediasApi("../data/photographers.json");
+  }
+}

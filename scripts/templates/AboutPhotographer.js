@@ -12,13 +12,15 @@ class AboutPhotographer {
       "call-to-action-modal-photographer-name",
       this._photographer.name
     );
+
     // Render Tags loop for aboutPhotographer
     let photographerTags = "";
     for (let tag of this._photographer.tags) {
-      const Tags = ` <li>
-                    <button role="button" type="button" class="btn btn-danger me-1 mb-1 p-1 rounded-pill photographer-card-tags tag btn-${tag}" data-bs-toggle="button" tabindex="1" autocomplete="off" onclick="checkTag('${tag}')" data-filter=".${tag}" aria-pressed="false">#${tag}</button>
-                    <span class="visually-hidden">Tag ${tag}</span>
-                </li>`;
+      const Tags = `
+      <li>
+       <button role="button" type="button" class="btn btn-danger me-1 mb-1 p-1 rounded-pill photographer-card-tags tag btn-${tag}" data-bs-toggle="button" tabindex="1" autocomplete="off" onclick="checkTag('${tag}')" data-filter=".${tag}" aria-pressed="false">#${tag}</button>
+       <span class="visually-hidden">Tag ${tag}</span>
+      </li>`;
       photographerTags = photographerTags + Tags;
     }
     // Render AboutPhotographer
@@ -47,7 +49,7 @@ class AboutPhotographer {
     <div id="about-photographer-likes-price-container" class="d-none d-md-flex fixed-bottom rounded-top px-md-4 py-md-3">
         <div id="about-photographer-likes-container" class="me-5 d-flex align-items-center">
             <div id="about-photographer-likes-count" class="me-1"></div>
-            <img src="..//assets/img/likes.svg" alt="" aria-hidden="true" id="about-photographer-likes-logo">
+            <img src="../../assets/images/likes.svg" alt="" aria-hidden="true" id="about-photographer-likes-logo">
         </div>
         <p id="about-photographer-price">${this._photographer.price} / jour</p>
     </div>
