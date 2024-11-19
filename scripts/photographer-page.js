@@ -1,12 +1,13 @@
+import { plusSlides, currentSlide } from "./functions/slider.js";
 import { filter, filters, checkTag } from "./functions/filters.js";
-import { MediasFactory } from "../factories/MediasFactory.js";
-import { Photographer } from "./class/Photographer.js";
+import { newValue } from "./functions/newValue.js";
+import { sort } from "./functions/sorting.js";
+import { PhotographersApi, MediasApi } from "./api/Api.js";
+import { MediasFactory } from "./factories/MediasFactory.js";
+import { Photographer } from "./class/photographer.js";
+import { Lightbox } from "./templates/Lightbox.js";
 import { AboutPhotographer } from "./templates/AboutPhotographer.js";
 import { MediaCard } from "./templates/MediaCard.js";
-import { newValue } from "./functions/newValue.js";
-import { PhotographersApi, MediasApi } from "./api/Api.js";
-import { plusSlides, currentSlide } from "./functions/slider.js";
-import { Lightbox } from "./templates/Lightbox.js";
 
 // Create mediasLightbox array
 let mediasLightbox = [];
@@ -14,7 +15,7 @@ let mediasLightbox = [];
 // Get photographer id
 let id = new URLSearchParams(window.location.search).get("id");
 // define PhotographerPgaes class
-class PhotographerPgaes {
+class PhotographerPages {
   constructor() {
     // Get elements
     this.$photographerWrapper = document.querySelector("#about-photographer");
@@ -70,4 +71,87 @@ class PhotographerPgaes {
       (photographer) => photographer.photographerId === id
     );
   }
+  async lightbox() {
+    const photographer = await this.photographer();
+    //remove old slide
+    const mySlides = document.getElementsByClassName("mySlides");
+    while (mySlides.length > 0) {
+      mySlides[0].parentNode.removeChild(mySlides[0]);
+    }
+    //Lightbox media filter
+    if (filters.length != 0) {
+      let dataFilter = "("; //La valeur initiale affectée à dataFilter est une chaîne de caractères (string)
+      for (let i = 0; i < filters.length; i++) {
+        let newData = "objet.tags == '" + filters[i].substring(1) + "'";
+        if (i > 0) {
+          dataFilter = dataFilter + " || " + newData;
+        }
+        if (i === 0) {
+          dataFilter = dataFilter + newData;
+        }
+      }
+      dataFilter = dataFilter + ")";
+      var medias = mediasLightbox.filter(
+        (objet) => objet.photographerId == id && eval(dataFilter)
+      );
+    } else {
+      var medias = mediasLightbox.filter((objet) => objet.photographerId == id);
+    }
+    // Render lightbox
+    let mediaItem = 1;
+    medias.forEach((media) => {
+      const mediaId = media.id;
+      const template = new Lightbox(media, photographer);
+      const carouselControlPrev = document.getElementById(
+        "carousel-control-prev"
+      );
+      this.$lightboxWrapper.insTotalertBefore(
+        template.createLightbox(),
+        carouselControlPrev
+      );
+      // Add MediaNumber /  TotalMedia in lightbox
+      newValue("lightboxTotal-" + mediaId, medias.length);
+      newValue("lightbox-" + mediaId, mediaItem);
+      // Add onClick on medias for slider
+      const imgOnClick = document.getElementById("media-" + mediaId);
+      imgOnClick.setAttribute("onclick", "currentSlide(" + mediaItem++ + ")");
+    });
+  }
 }
+// initApp function // 19/11
+const initApp = async () => {
+  const photographerPages = new PhotographerPages();
+  await photographerPages.aboutPhotographer();
+
+  await photographerPages.mediasLightboxArray();
+
+  // Init filter and render medias
+  await filter(
+    photographerPages.medias(),
+    ".grid",
+    ".itemSelector",
+    "fitRows",
+    "popularity",
+    {
+      popularity: ".photographer-medias-likes-count parseInt",
+      date: ".photographer-medias-date",
+      title: ".photographer-medias-title",
+    },
+    {
+      popularity: false,
+      date: false,
+      title: true,
+    }
+  );
+  // Default popularity sort
+  await sort("Popularité");
+};
+initApp();
+
+// Extend function to navigation window
+window.plusSlidxes = plusSlides;
+window.currentSlide = currentSlide;
+window.sort = sort;
+window.checkTag = checkTag;
+
+export { mediasLightbox, PhotographerPages };
