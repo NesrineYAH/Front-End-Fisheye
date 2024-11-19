@@ -7,7 +7,7 @@ class AboutPhotographer {
   createAboutPhotographer() {
     //    const pageTitle = $("#title")[0];
     const pageTitle = document.getElementById("title");
-    pageTitle.textContent = this._photographer.name + " - Fisheye";
+    pageTitle.textContent = this._photographer.name + " - Fisheye"; // titre la page: nom du photgrapgher + Fisheye
     const callToActionModalPhotographerName = newValue(
       "call-to-action-modal-photographer-name",
       this._photographer.name

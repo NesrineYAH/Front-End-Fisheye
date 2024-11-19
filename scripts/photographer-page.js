@@ -16,15 +16,58 @@ let id = new URLSearchParams(window.location.search).get("id");
 // define PhotographerPgaes class
 class PhotographerPgaes {
   constructor() {
-    this.$aboutPhotographerWrapper = document.querySelector(
-      "#about-photographer"
-    );
+    // Get elements
+    this.$photographerWrapper = document.querySelector("#about-photographer");
     this.$mediasWrapper = document.querySelector(
       "#photographer-all-medias-container"
     );
     this.$lightboxWrapper = document.querySelector("#modal-content");
     // Get data
     this.photographersApi = new PhotographersApi("../data/photographers.json");
-    this.MediasApi = new MediasApi("../data/photographers.json");
+    this.mediasApi = new MediasApi("../data/photographers.json");
+    // Data filters functions
+    this.photographer = async () => {
+      const photographerData = await this.photographersApi.getPhotographers();
+      photographerData.map((photographer) => new Photographer(photographer));
+      const photographerDataFiltred = photographerData.find(
+        (photographer) => photographer.id == id
+      );
+      return photographerDataFiltred;
+    };
+    this.media = async () => {
+      const mediasData = await this.mediasApi.getMedias();
+      mediasData.map((media) => new MediasFactory(media));
+      const mediasDataFiltered = mediasData.filter(
+        (photographer) => photographer.id == id
+      );
+      return mediasDataFiltered;
+    };
+  }
+  // Render aboutPhotographer
+  async aboutPhotographer() {
+    const photographer = await this.photographer();
+    const template = new AboutPhotographer(photographer);
+    this.$photographerWrapper.appendChild(template.createAboutPhotographer());
+  }
+  // Render medias
+  async medias() {
+    let allLikes = 0;
+
+    const photographer = await this.photographer();
+    const mediasData = await this.media();
+
+    mediasData.forEach((media) => {
+      const template = new MediaCard(media, photographer);
+      this.$mediasWrapper.appendChild(template.createMediaCard());
+      allLikes += media.likes;
+    });
+    newValue("about-photographer-likes-count", allLikes);
+  }
+  //Fill mediasLightboxArry array (for lightbox)
+  async mediasLightboxArray() {
+    const mediasData = await this.media();
+    mediasLightbox = mediasData.filter(
+      (photographer) => photographer.photographerId === id
+    );
   }
 }
