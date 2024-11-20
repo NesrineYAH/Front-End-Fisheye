@@ -25,13 +25,13 @@ class MediaCard {
     if (this._media.image) {
       // Render HTML for image
       mediaDiv = `
-              <img class="rounded photographer-medias-img" src="assets/img/${this._photographer.name}/${this._media.image}" alt="${this._media.description}" width="550px" height="520px">
+              <img class="rounded photographer-medias-img" src="../../assets/images/${this._photographer.name}/${this._media.image}" alt="${this._media.description}" width="550px" height="520px">
               `;
     } else if (this._media.video) {
       // Render HTML for video
       mediaDiv = `
               <video class="rounded photographer-medias-img" tabindex="-1" width="100%" height="100%" aria-label="${this._media.description}">
-                  <source src="assets/img/${this._photographer.name}/${this._media.video}"  type="video/mp4">
+                  <source src="../../assets/images/${this._photographer.name}/${this._media.video}"  type="video/mp4">
               </video>
               `;
     }
