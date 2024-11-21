@@ -105,7 +105,7 @@ class PhotographerPages {
       const carouselControlPrev = document.getElementById(
         "carousel-control-prev"
       );
-      this.$lightboxWrapper.insTotalertBefore(
+      this.$lightboxWrapper.insertBefore(
         template.createLightbox(),
         carouselControlPrev
       );
@@ -122,7 +122,6 @@ class PhotographerPages {
 const initApp = async () => {
   const photographerPages = new PhotographerPages();
   await photographerPages.aboutPhotographer();
-
   await photographerPages.mediasLightboxArray();
 
   // Init filter and render medias
