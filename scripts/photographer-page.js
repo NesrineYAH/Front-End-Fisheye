@@ -71,6 +71,7 @@ class PhotographerPages {
       (photographer) => photographer.photographerId === id
     );
   }
+  // est utilisée pour afficher une galerie de médias pour un photographe spécifique,
   async lightbox() {
     const photographer = await this.photographer();
     //remove old slide
@@ -79,6 +80,7 @@ class PhotographerPages {
       mySlides[0].parentNode.removeChild(mySlides[0]);
     }
     //Lightbox media filter
+    //Si des filtres (tags) sont sélectionnés, ils sont traduits en une condition que eval() utilise pour filtrer les médias
     if (filters.length != 0) {
       let dataFilter = "("; //La valeur initiale affectée à dataFilter est une chaîne de caractères (string)
       for (let i = 0; i < filters.length; i++) {
