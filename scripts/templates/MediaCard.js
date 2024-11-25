@@ -47,7 +47,7 @@ class MediaCard {
                   <div class=" photographer-medias-date hide">${this._media.date}</div>
                   <button id="likes-container-${this._media.id}" type="button" class=" d-flex p-0 position-absolute end-0 align-items-center btn photographer-medias-likes-container" data-bs-toggle="button" onclick="like(${this._media.id}, 1)">
                       <div id="like-${this._media.id}" class="me-1 photographer-medias-likes-count">${this._media.likes}</div>
-                      <img id="like-heart-${this._media.id}" src="assets/img/likes.svg" alt="likes" class="photographer-medias-likes-logo">
+                      <img id="like-heart-${this._media.id}" src="../../assets/images/likes.svg" alt="likes" class="photographer-medias-likes-logo">
                   </button>
               </figcaption>
           `;

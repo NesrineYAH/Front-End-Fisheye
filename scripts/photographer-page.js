@@ -15,10 +15,13 @@ let mediasLightbox = [];
 // Get photographer id
 let id = new URLSearchParams(window.location.search).get("id");
 // define PhotographerPgaes class
+
 class PhotographerPages {
   constructor() {
     // Get elements
-    this.$photographerWrapper = document.querySelector("#about-photographer");
+    this.$aboutPhotographerWrapper = document.querySelector(
+      "#about-photographer"
+    );
     this.$mediasWrapper = document.querySelector(
       "#photographer-all-medias-container"
     );
@@ -39,7 +42,7 @@ class PhotographerPages {
       const mediasData = await this.mediasApi.getMedias();
       mediasData.map((media) => new MediasFactory(media));
       const mediasDataFiltered = mediasData.filter(
-        (photographer) => photographer.id == id
+        (photographer) => photographer.photographerId == id
       );
       return mediasDataFiltered;
     };
@@ -48,7 +51,9 @@ class PhotographerPages {
   async aboutPhotographer() {
     const photographer = await this.photographer();
     const template = new AboutPhotographer(photographer);
-    this.$photographerWrapper.appendChild(template.createAboutPhotographer());
+    this.$aboutPhotographerWrapper.appendChild(
+      template.createAboutPhotographer()
+    );
   }
   // Render medias
   async medias() {
@@ -68,7 +73,7 @@ class PhotographerPages {
   async mediasLightboxArray() {
     const mediasData = await this.media();
     mediasLightbox = mediasData.filter(
-      (photographer) => photographer.photographerId === id
+      (photographer) => photographer.photographerId == id
     );
   }
   // est utilisée pour afficher une galerie de médias pour un photographe spécifique,

@@ -1,4 +1,3 @@
-// a verifier demain
 // Define Lightbox class
 class Lightbox {
   constructor(media, photographer) {
@@ -15,13 +14,13 @@ class Lightbox {
     if (this._media.image) {
       // Render HTML for image
       lightboxDiv = `
-              <img class="rounded-top modal-img" src="assets/img/${this._photographer.name}/full-size/${this._media.image}" alt="${this._media.description}">
+              <img class="rounded-top modal-img" src="../../assets/images/${this._photographer.name}/full-size/${this._media.image}" alt="${this._media.description}">
               `;
     } else if (this._media.video) {
       // Render HTML for video
       lightboxDiv = `
               <video class="rounded-top modal-img" controls="true" width="100%" height="auto">
-                  <source src="assets/img/${this._photographer.name}/${this._media.video}" alt="${this._media.description}" type="video/mp4">
+                  <source src="../../assets/images/${this._photographer.name}/${this._media.video}" alt="${this._media.description}" type="video/mp4">
               </video>
               `;
     }
